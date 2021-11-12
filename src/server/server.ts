@@ -10,6 +10,7 @@ import * as socketIO from "socket.io";
 import http from 'http';
 import dotenv from "dotenv";
 import { authHandler } from "./middleware/auth.middleware.js";
+import { ProductModel } from "./schemas/product.schema.js";
 dotenv.config();
 const access_secret = process.env.ACCESS_TOKEN_SECRET as string;
 console.log(access_secret);
@@ -83,6 +84,35 @@ app.post("/create-user", function (req, res) {
         });
     });
   });
+});
+
+app.post("/create-product", function (req, res) {
+  const { title, price, description, imageurl,quantity } = req.body;
+      const  product = new ProductModel({
+       title,
+       price,
+       description,
+        imageurl,
+        quantity,
+      });
+      product
+        .save()
+        .then((data:any) => {
+          res.json({ data });
+        })
+        .catch((err:any) => {
+          res.status(501);
+          res.json({ errors: err });
+        });
+    });
+  
+app.get("/products", authHandler, function (req: any, res) {
+  ProductModel.find()
+    .then((data) => res.json({ data }))
+    .catch((err) => {
+      res.status(501);
+      res.json({ errors: err });
+    });
 });
 
 app.post("/create-post", function (req, res) {
