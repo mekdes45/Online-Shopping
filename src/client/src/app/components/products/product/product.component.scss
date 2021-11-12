@@ -1,0 +1,40 @@
+.card-top {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    word-wrap: break-word;
+    min-width: 0;
+    background: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 25rem;
+  }
+  .items{
+    width:64px;
+  }
+  .item img {
+    width: 64px;
+  }
+  .item {
+    margin: 0px 15px;
+    text-align: center;
+  }
+  .item a:hover {
+    color: blue;
+  }
+  .card img {
+    width: 170px;
+    height: 150px;
+    margin-bottom: 5px;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .card {
+    // padding: 20px;
+    margin: 40px;
+  }
+  .card img:hover {
+    transition: 0.3s ease-in-out;
+    transform: scale(1.1);
+  }
+  
